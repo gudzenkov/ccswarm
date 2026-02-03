@@ -54,51 +54,51 @@ echo "Distributing tasks across agents..."
 
 # フロントエンドタスク
 echo -e "${MAGENTA}[Frontend Agent]${NC} Creating UI components..."
-ccswarm task create \
-  --description "Design and implement responsive navbar component" \
-  --agent frontend \
-  --priority high
+ccswarm task add \
+  "Design and implement responsive navbar component" \
+  --priority high \
+  --task-type development
 
-ccswarm task create \
-  --description "Create user dashboard with data visualization" \
-  --agent frontend \
-  --priority medium
+ccswarm task add \
+  "Create user dashboard with data visualization" \
+  --priority medium \
+  --task-type development
 
 # バックエンドタスク
 echo -e "${BLUE}[Backend Agent]${NC} Building API endpoints..."
-ccswarm task create \
-  --description "Design RESTful API for user management" \
-  --agent backend \
-  --priority critical
+ccswarm task add \
+  "Design RESTful API for user management" \
+  --priority critical \
+  --task-type development
 
-ccswarm task create \
-  --description "Implement database schema and migrations" \
-  --agent backend \
-  --priority high
+ccswarm task add \
+  "Implement database schema and migrations" \
+  --priority high \
+  --task-type development
 
 # DevOpsタスク
 echo -e "${CYAN}[DevOps Agent]${NC} Setting up infrastructure..."
-ccswarm task create \
-  --description "Configure CI/CD pipeline with GitHub Actions" \
-  --agent devops \
-  --priority high
+ccswarm task add \
+  "Configure CI/CD pipeline with GitHub Actions" \
+  --priority high \
+  --task-type development
 
-ccswarm task create \
-  --description "Set up Docker containers for microservices" \
-  --agent devops \
-  --priority medium
+ccswarm task add \
+  "Set up Docker containers for microservices" \
+  --priority medium \
+  --task-type development
 
 # QAタスク
 echo -e "${GREEN}[QA Agent]${NC} Preparing test suites..."
-ccswarm task create \
-  --description "Write unit tests for critical components" \
-  --agent qa \
-  --priority high
+ccswarm task add \
+  "Write unit tests for critical components" \
+  --priority high \
+  --task-type testing
 
-ccswarm task create \
-  --description "Create E2E test scenarios for user workflows" \
-  --agent qa \
-  --priority medium
+ccswarm task add \
+  "Create E2E test scenarios for user workflows" \
+  --priority medium \
+  --task-type testing
 
 echo ""
 echo -e "${YELLOW}📋 Step 4: エージェント間の協調${NC}"
@@ -126,12 +126,12 @@ echo -e "${YELLOW}📋 Step 7: 統合結果${NC}"
 echo "Showing integrated results from all agents..."
 
 # タスクの完了状況を表示
-ccswarm task list --all --format table
+ccswarm task list --all --detailed
 
 # エージェントのメトリクスを表示
 echo ""
 echo -e "${CYAN}📊 Agent Metrics:${NC}"
-ccswarm agents --metrics
+ccswarm agents --all
 
 echo ""
 echo -e "${BLUE}💡 Advanced Features:${NC}"

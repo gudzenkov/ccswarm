@@ -44,21 +44,21 @@ echo "Sending various tasks to Claude Code..."
 # タスク1: コードレビュー
 echo ""
 echo "Task 1: Code Review"
-ccswarm claude-acp send --task "Review the ccswarm codebase and identify top 3 areas for improvement"
+ccswarm claude-acp send "Review the ccswarm codebase and identify top 3 areas for improvement"
 
 sleep 2
 
 # タスク2: ドキュメント生成
 echo ""
 echo "Task 2: Documentation Generation"
-ccswarm claude-acp send --task "Generate API documentation for the SimplifiedClaudeAdapter"
+ccswarm claude-acp send "Generate API documentation for the SimplifiedClaudeAdapter"
 
 sleep 2
 
 # タスク3: テスト作成
 echo ""
 echo "Task 3: Test Creation"
-ccswarm claude-acp send --task "Create unit tests for the ACP connection module"
+ccswarm claude-acp send "Create unit tests for the ACP connection module"
 
 echo ""
 echo -e "${YELLOW}📋 Step 4: 診断情報${NC}"

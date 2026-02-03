@@ -29,22 +29,22 @@ echo -e "${YELLOW}📋 Step 2: タスクの作成${NC}"
 echo "Creating various tasks..."
 
 # フロントエンドタスク
-ccswarm task create \
-  --description "Create React login component" \
-  --agent frontend \
-  --priority high
+ccswarm task add \
+  "Create React login component" \
+  --priority high \
+  --task-type development
 
 # バックエンドタスク
-ccswarm task create \
-  --description "Implement user authentication API" \
-  --agent backend \
-  --priority critical
+ccswarm task add \
+  "Implement user authentication API" \
+  --priority critical \
+  --task-type development
 
 # QAタスク
-ccswarm task create \
-  --description "Write E2E tests for login flow" \
-  --agent qa \
-  --priority medium
+ccswarm task add \
+  "Write E2E tests for login flow" \
+  --priority medium \
+  --task-type testing
 
 echo -e "${GREEN}✅ Tasks created successfully${NC}"
 
@@ -62,8 +62,8 @@ ccswarm agents --all
 
 echo ""
 echo -e "${BLUE}💡 Demo Tips:${NC}"
-echo "- Use 'ccswarm task update <id> --status completed' to mark tasks as done"
-echo "- Use 'ccswarm task assign <id> --agent <name>' to reassign tasks"
-echo "- Use 'ccswarm logs --agent <name>' to view agent-specific logs"
+echo "- Use 'ccswarm task status <id>' to check task status"
+echo "- Use 'ccswarm task cancel <id>' to cancel a task"
+echo "- Use 'ccswarm task history' to view task execution history"
 echo ""
 echo -e "${GREEN}✅ Task management demo completed!${NC}"
