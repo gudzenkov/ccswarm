@@ -57,7 +57,7 @@ impl OutputFormat {
 /// Claude Code configuration
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClaudeConfig {
-    /// Model to use (e.g., "claude-3.5-sonnet")
+    /// Model to use (e.g., "sonnet")
     pub model: String,
 
     /// Whether to skip permission prompts
@@ -97,7 +97,7 @@ pub struct ClaudeConfig {
 impl Default for ClaudeConfig {
     fn default() -> Self {
         Self {
-            model: "claude-3.5-sonnet".to_string(),
+            model: "sonnet".to_string(),
             dangerous_skip: true,
             think_mode: Some(ThinkMode::Think),
             json_output: true,
@@ -115,7 +115,7 @@ impl ClaudeConfig {
     /// Create config for Master Claude
     pub fn for_master() -> Self {
         Self {
-            model: "claude-3.5-sonnet".to_string(),
+            model: "sonnet".to_string(),
             dangerous_skip: true,
             think_mode: Some(ThinkMode::UltraThink),
             json_output: true,
@@ -167,7 +167,7 @@ impl ClaudeConfig {
         };
 
         Self {
-            model: "claude-3.5-sonnet".to_string(),
+            model: "sonnet".to_string(),
             dangerous_skip: true,
             think_mode,
             json_output: true,
@@ -335,7 +335,7 @@ mod tests {
     #[test]
     fn test_basic_config_creation() {
         let config = ClaudeConfig::default();
-        assert_eq!(config.model, "claude-3.5-sonnet");
+        assert_eq!(config.model, "sonnet");
         assert!(config.dangerous_skip);
     }
 }

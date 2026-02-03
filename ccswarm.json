@@ -11,7 +11,7 @@
       "think_mode": "think",
       "permission_level": "standard",
       "claude_config": {
-        "model": "claude-3.5-sonnet",
+        "model": "sonnet",
         "dangerously_skip_permissions": true,
         "think_mode": "think",
         "json_output": true,
@@ -33,7 +33,7 @@
       "worktree": "../worktrees/frontend-agent",
       "branch": "frontend-agent",
       "claude_config": {
-        "model": "claude-3.5-sonnet",
+        "model": "sonnet",
         "dangerously_skip_permissions": true,
         "think_mode": "think_hard",
         "json_output": true,
@@ -55,7 +55,7 @@
       "worktree": "../worktrees/backend-agent",
       "branch": "backend-agent",
       "claude_config": {
-        "model": "claude-3.5-sonnet",
+        "model": "sonnet",
         "dangerously_skip_permissions": true,
         "think_mode": "think_hard",
         "json_output": true,
