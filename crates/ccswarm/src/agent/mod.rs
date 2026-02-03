@@ -319,7 +319,31 @@ impl ClaudeCodeAgent {
                 );
                 Ok(())
             }
-            _ => Err(anyhow::anyhow!("Boundary verification failed")),
+            TaskEvaluation::Clarify { .. } => {
+                // Clarify is acceptable for self-tests - the task is within scope but ambiguous
+                tracing::info!(
+                    "Boundary verification passed (clarify) for agent: {}",
+                    self.identity.agent_id
+                );
+                Ok(())
+            }
+            TaskEvaluation::Delegate { reason, target_agent, .. } => {
+                tracing::warn!(
+                    "Boundary verification failed for agent {}: {} (should delegate to {})",
+                    self.identity.agent_id,
+                    reason,
+                    target_agent
+                );
+                Err(anyhow::anyhow!("Boundary verification failed: task should be delegated to {}", target_agent))
+            }
+            TaskEvaluation::Reject { reason } => {
+                tracing::warn!(
+                    "Boundary verification failed for agent {}: {}",
+                    self.identity.agent_id,
+                    reason
+                );
+                Err(anyhow::anyhow!("Boundary verification failed: {}", reason))
+            }
         }
     }
 
