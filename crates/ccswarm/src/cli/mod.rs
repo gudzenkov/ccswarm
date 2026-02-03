@@ -2412,7 +2412,7 @@ impl CliRunner {
                 // Remove all ccswarm worktrees
                 let mut removed_count = 0;
                 for worktree in ccswarm_worktrees {
-                    match manager.remove_worktree(&worktree.path).await {
+                    match manager.remove_worktree_full(&worktree.path, *force).await {
                         Ok(_) => {
                             removed_count += 1;
                             if !self.json_output {
