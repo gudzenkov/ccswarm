@@ -1189,20 +1189,24 @@ impl CliRunner {
 
         let formatter = create_formatter(cli.json);
 
-        // Initialize execution engine for task management
-        let execution_engine = match ExecutionEngine::new(&config).await {
-            Ok(engine) => {
-                if let Err(e) = engine.start().await {
-                    warn!("Failed to start execution engine: {}", e);
+        // Only initialize execution engine for commands that need agents
+        let execution_engine = if Self::command_needs_agents(&cli.command) {
+            match ExecutionEngine::new(&config).await {
+                Ok(engine) => {
+                    if let Err(e) = engine.start().await {
+                        warn!("Failed to start execution engine: {}", e);
+                        None
+                    } else {
+                        Some(engine)
+                    }
+                }
+                Err(e) => {
+                    warn!("Failed to create execution engine: {}", e);
                     None
-                } else {
-                    Some(engine)
                 }
             }
-            Err(e) => {
-                warn!("Failed to create execution engine: {}", e);
-                None
-            }
+        } else {
+            None
         };
 
         Ok(Self {
@@ -1212,6 +1216,21 @@ impl CliRunner {
             formatter,
             execution_engine,
         })
+    }
+
+    /// Check if a command needs agents to be spawned
+    fn command_needs_agents(command: &Commands) -> bool {
+        matches!(
+            command,
+            Commands::Tui
+                | Commands::Start { .. }
+                | Commands::Task { .. }
+                | Commands::Review { .. }
+                | Commands::Delegate { .. }
+                | Commands::AutoCreate { .. }
+                | Commands::Sangha { .. }
+                | Commands::Extend { .. }
+        )
     }
 
     /// Run the CLI command
